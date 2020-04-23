@@ -1,13 +1,9 @@
 <?php 
 /*
-	Plugin Name: Simple Ajax Chat
-	Plugin URI: https://perishablepress.com/simple-ajax-chat/
+	Plugin Name: Chat Plugin
 	Description: Displays a fully customizable Ajax-powered chat box anywhere on your site.
 	Tags: ajax, chat, chatbox, forum, messaging,  html5, im, instant message
-	Author: Jeff Starr
-	Author URI: https://plugin-planet.com/
-	Donate link: https://monzillamedia.com/donate.html
-	Contributors: specialk
+	Author: Kunal Malviya
 	Requires at least: 4.1
 	Tested up to: 5.4
 	Stable tag: 20200315
@@ -16,23 +12,6 @@
 	Text Domain: simple-ajax-chat
 	Domain Path: /languages
 	License: GPL v2 or later
-*/
-
-/*
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 
-	2 of the License, or (at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
-	You should have received a copy of the GNU General Public License
-	with this program. If not, visit: https://www.gnu.org/licenses/
-	
-	Copyright 2020 Monzilla Media. All rights reserved.
 */
 
 if (!defined('ABSPATH')) exit;
@@ -514,29 +493,21 @@ add_filter ('plugin_action_links', 'sac_plugin_action_links', 10, 2);
 
 
 
-// rate plugin link
-function add_sac_links($links, $file) {
-	
-	if ($file == plugin_basename(__FILE__)) {
-		
-		$home_href  = 'https://perishablepress.com/simple-ajax-chat/';
-		$home_title = esc_attr__('Plugin Homepage', 'simple-ajax-chat');
-		$home_text  = esc_html__('Homepage', 'simple-ajax-chat');
-		
-		$links[] = '<a target="_blank" rel="noopener noreferrer" href="'. $home_href .'" title="'. $home_title .'">'. $home_text .'</a>';
-		
-		$rate_href  = 'https://wordpress.org/support/plugin/simple-ajax-chat/reviews/?rate=5#new-post';
-		$rate_title = esc_attr__('Give us a 5-star rating at WordPress.org', 'simple-ajax-chat');
-		$rate_text  = esc_html__('Rate this plugin', 'simple-ajax-chat') .'&nbsp;&raquo;';
-		
-		$links[] = '<a target="_blank" rel="noopener noreferrer" href="'. $rate_href .'" title="'. $rate_title .'">'. $rate_text .'</a>';
-		
-	}
-	
-	return $links;
-	
-}
-add_filter('plugin_row_meta', 'add_sac_links', 10, 2);
+// // rate plugin link
+// function add_sac_links($links, $file) {
+// 	if ($file == plugin_basename(__FILE__)) {		
+// 		$home_href  = 'https://perishablepress.com/simple-ajax-chat/';
+// 		$home_title = esc_attr__('Plugin Homepage', 'simple-ajax-chat');
+// 		$home_text  = esc_html__('Homepage', 'simple-ajax-chat');		
+// 		$links[] = '<a target="_blank" rel="noopener noreferrer" href="'. $home_href .'" title="'. $home_title .'">'. $home_text .'</a>';		
+// 		$rate_href  = 'https://wordpress.org/support/plugin/simple-ajax-chat/reviews/?rate=5#new-post';
+// 		$rate_title = esc_attr__('Give us a 5-star rating at WordPress.org', 'simple-ajax-chat');
+// 		$rate_text  = esc_html__('Rate this plugin', 'simple-ajax-chat') .'&nbsp;&raquo;';		
+// 		$links[] = '<a target="_blank" rel="noopener noreferrer" href="'. $rate_href .'" title="'. $rate_title .'">'. $rate_text .'</a>';
+// 	}
+// 	return $links;
+// }
+// add_filter('plugin_row_meta', 'add_sac_links', 10, 2);
 
 
 

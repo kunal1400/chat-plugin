@@ -525,7 +525,7 @@ function sac_render_form() {
 				<form method="post" action="options.php">
 					<?php settings_fields('sac_plugin_options'); ?>
 					
-					<div id="mm-panel-alert"<?php echo $display_alert; ?> class="postbox">
+					<!-- <div id="mm-panel-alert"<?php echo $display_alert; ?> class="postbox">
 						<h2><?php esc_html_e('Simple Ajax Chat needs your support!', 'simple-ajax-chat'); ?></h2>
 						<div class="toggle">
 							<div class="mm-panel-alert">
@@ -545,9 +545,9 @@ function sac_render_form() {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					
-					<div id="mm-panel-overview" class="postbox">
+					<!-- <div id="mm-panel-overview" class="postbox">
 						<h2><?php esc_html_e('Overview', 'simple-ajax-chat'); ?></h2>
 						<div class="toggle<?php if ($sac_action_any) echo ' default-hidden'; ?>">
 							<div class="mm-panel-overview">
@@ -567,7 +567,7 @@ function sac_render_form() {
 								</p>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<div id="mm-panel-primary" class="postbox">
 						<h2><?php esc_html_e('Plugin Settings', 'simple-ajax-chat'); ?></h2>
@@ -922,19 +922,16 @@ function sac_render_form() {
 					</div>
 				</div>
 				
-				<div id="mm-restore-settings" class="postbox">
+				<!-- <div id="mm-restore-settings" class="postbox">
 					<h2><?php esc_html_e('Export Chat Messages', 'simple-ajax-chat'); ?></h2>
 					<div class="toggle<?php if (!$sac_action_data) echo ' default-hidden'; ?>">
-						
 						<p>
 							<?php esc_html_e('Click the "Export" link to create a CSV file named "sac-export.csv", located in the SAC plugin directory. A download link will appear after the file is created.', 'simple-ajax-chat'); ?> 
 							<?php esc_html_e('Note that the export file will contain ALL chat data (including user IP), and should be deleted after download. You can delete the file by clicking the "Delete CSV" link, which will appear after the file is created.', 'simple-ajax-chat'); ?>
-						</p>
-						
-						<?php echo sac_export_chat_panel(); ?>
-						
+						</p>						
+						<?php echo sac_export_chat_panel(); ?>						
 					</div>
-				</div>
+				</div> -->
 				
 				<div id="mm-restore-settings" class="postbox">
 					<h2><?php esc_html_e('Restore Defaults', 'simple-ajax-chat'); ?></h2>
@@ -956,36 +953,34 @@ function sac_render_form() {
 					</div>
 				</div>
 				
-				<div id="mm-panel-secondary" class="postbox">
+				<!-- <div id="mm-panel-secondary" class="postbox">
 					<h2><?php esc_html_e('Shortcode &amp; Template Tag', 'simple-ajax-chat'); ?></h2>
-					<div class="toggle default-hidden">
-						
+					<div class="toggle default-hidden">						
 						<h3><?php esc_html_e('Shortcode', 'simple-ajax-chat'); ?></h3>
 						<p><?php esc_html_e('Use this shortcode to display the chat box on any WP Post or Page:', 'simple-ajax-chat'); ?></p>
 						<p><code class="mm-code">[sac_happens]</code></p>
 						
 						<h3><?php esc_html_e('Template tag', 'simple-ajax-chat'); ?></h3>
 						<p><?php esc_html_e('Use this template tag to display the chat box anywhere in your theme template:', 'simple-ajax-chat'); ?></p>
-						<p><code class="mm-code">&lt;?php if (function_exists('simple_ajax_chat')) simple_ajax_chat(); ?&gt;</code></p>
-						
+						<p><code class="mm-code">&lt;?php if (function_exists('simple_ajax_chat')) simple_ajax_chat(); ?&gt;</code></p>						
 					</div>
-				</div>
+				</div> -->
 				
-				<div id="mm-panel-current" class="postbox">
+				<!-- <div id="mm-panel-current" class="postbox">
 					<h2><?php esc_html_e('Show Support', 'simple-ajax-chat'); ?></h2>
 					<div class="toggle<?php if ($sac_options_update) echo ' default-hidden'; ?>">
-						<?php require_once('support-panel.php'); ?>
+						<?php //require_once('support-panel.php'); ?>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
 		
-		<div class="mm-credit-info">
+		<!-- <div class="mm-credit-info">
 			<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($sac_homeurl); ?>" title="<?php esc_attr_e('Plugin Homepage', 'simple-ajax-chat'); ?>"><?php echo esc_html($sac_plugin); ?></a> <?php esc_html_e('by', 'simple-ajax-chat'); ?> 
 			<a target="_blank" rel="noopener noreferrer" href="https://twitter.com/perishable" title="<?php esc_attr_e('Jeff Starr on Twitter', 'simple-ajax-chat'); ?>">Jeff Starr</a> @ 
 			<a target="_blank" rel="noopener noreferrer" href="https://monzillamedia.com/" title="<?php esc_attr_e('Obsessive Web Design &amp; Development', 'simple-ajax-chat'); ?>">Monzilla Media</a>
-		</div>
+		</div> -->
 		
 	</div>
 
