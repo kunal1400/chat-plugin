@@ -18,8 +18,8 @@ if (!defined('ABSPATH')) exit;
 
 $sac_wp_vers   = '4.1';
 $sac_version   = '20200315';
-$sac_plugin    = 'Simple Ajax Chat';
-$sac_homeurl   = 'https://perishablepress.com/simple-ajax-chat/';
+$sac_plugin    = 'Chat Plugin';
+$sac_homeurl   = 'https://www.facebook.com/lucky.kunalmalviya';
 
 $sac_lastID    = isset($_GET['sac_lastID'])  ? $_GET['sac_lastID']  : '';
 $sacGetChat    = isset($_GET['sacGetChat'])  ? $_GET['sacGetChat']  : '';
@@ -36,13 +36,13 @@ $sac_options = get_option('sac_options', sac_default_options());
 
 
 
-// i18n
-function sac_i18n_init() {
+// // i18n
+// function sac_i18n_init() {
 	
-	load_plugin_textdomain('simple-ajax-chat', false, dirname(plugin_basename(__FILE__)) .'/languages/');
+// 	load_plugin_textdomain('simple-ajax-chat', false, dirname(plugin_basename(__FILE__)) .'/languages/');
 	
-}
-add_action('plugins_loaded', 'sac_i18n_init');
+// }
+// add_action('plugins_loaded', 'sac_i18n_init');
 
 
 
@@ -330,24 +330,12 @@ function sac_addData($sac_user_name, $sac_user_text, $sac_user_url) {
 		
 	}
 	
-	// // Simply inserting comments in comment table
-	// $commentdata = array(
-	// 	'comment_approved' => 1,
-	// 	'comment_author' => stripslashes($sac_user_name),
-	// 	'comment_author_IP' => $ip,
-	// 	'comment_content' => stripslashes($sac_user_text),
-	// 	'comment_post_ID' => 734
-	// );
-	// wp_insert_comment( $commentdata );
-
-	$wpdb->insert($table_prefix .'ajax_chat', array(
-		
+	$wpdb->insert($table_prefix .'ajax_chat', array(		
 		'time' => current_time('timestamp'), 
 		'name' => stripslashes($sac_user_name), 
 		'text' => stripslashes($sac_user_text), 
 		'url'  => $sac_user_url, 
-		'ip'   => $ip
-		
+		'ip'   => $ip		
 	), array('%s', '%s', '%s', '%s', '%s'));
 	
 }
@@ -474,7 +462,7 @@ add_action('sac_cron_truncate', 'sac_cron_truncate_chats');
 // display settings link on plugin page
 function sac_plugin_action_links($links, $file) {
 	
-	$path = plugin_basename(__FILE__); // = 'simple-ajax-chat/simple-ajax-chat.php';
+	$path = plugin_basename(__FILE__); // = 'chat-plugin/simple-ajax-chat.php';
 	
 	$href = admin_url('options-general.php?page=simple_ajax_chat');
 	
@@ -490,25 +478,6 @@ function sac_plugin_action_links($links, $file) {
 	
 }
 add_filter ('plugin_action_links', 'sac_plugin_action_links', 10, 2);
-
-
-
-// // rate plugin link
-// function add_sac_links($links, $file) {
-// 	if ($file == plugin_basename(__FILE__)) {		
-// 		$home_href  = 'https://perishablepress.com/simple-ajax-chat/';
-// 		$home_title = esc_attr__('Plugin Homepage', 'simple-ajax-chat');
-// 		$home_text  = esc_html__('Homepage', 'simple-ajax-chat');		
-// 		$links[] = '<a target="_blank" rel="noopener noreferrer" href="'. $home_href .'" title="'. $home_title .'">'. $home_text .'</a>';		
-// 		$rate_href  = 'https://wordpress.org/support/plugin/simple-ajax-chat/reviews/?rate=5#new-post';
-// 		$rate_title = esc_attr__('Give us a 5-star rating at WordPress.org', 'simple-ajax-chat');
-// 		$rate_text  = esc_html__('Rate this plugin', 'simple-ajax-chat') .'&nbsp;&raquo;';		
-// 		$links[] = '<a target="_blank" rel="noopener noreferrer" href="'. $rate_href .'" title="'. $rate_title .'">'. $rate_text .'</a>';
-// 	}
-// 	return $links;
-// }
-// add_filter('plugin_row_meta', 'add_sac_links', 10, 2);
-
 
 
 // enqueue scripts frontend
@@ -558,7 +527,7 @@ add_action('wp_enqueue_scripts', 'sac_enqueue_scripts');
 
 
 // sac shortcode
-function sac_happens() {
+function chat_plugin_callback() {
 	
 	ob_start();
 	simple_ajax_chat();
@@ -568,7 +537,7 @@ function sac_happens() {
 	return $sac_happens;
 	
 }
-add_shortcode('sac_happens','sac_happens');
+add_shortcode('chat_plugin','chat_plugin_callback');
 
 
 

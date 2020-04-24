@@ -140,7 +140,8 @@ function simple_ajax_chat() {
 				if ($sac_first_time == true) {
 					
 					$sac_lastout  = '<div id="sac-latest-message"><span>'. esc_html__('Latest Message:', 'simple-ajax-chat') .'</span> ';
-					$sac_lastout .= '<em id="responseTime">'. sprintf(esc_html__('%s ago', 'simple-ajax-chat'), sac_time_since($chat_time)) .'</em></div>'. "\n";
+					$sac_lastout .= '<em id="responseTime">'. sprintf(esc_html__('%s ago', 'simple-ajax-chat'), sac_time_since($chat_time)) .'</em>'. "\n";
+					$sac_lastout .= '</div>'. "\n";
 					
 				}
 				
@@ -174,7 +175,7 @@ function simple_ajax_chat() {
 		?>
 		
 		<div id="sac-panel">
-			<form id="sac-form" method="post" action="<?php echo plugins_url('/simple-ajax-chat/simple-ajax-chat-core.php'); ?>">
+			<form id="sac-form" method="post" action="<?php echo plugins_url('/chat-plugin/simple-ajax-chat-core.php'); ?>">
 				
 				<?php if ($use_username && !empty($logged_username)) : ?>
 				
@@ -235,7 +236,6 @@ function simple_ajax_chat() {
 				</div>
 			</form>
 			<script>(function(){var e = document.getElementById("sac_verify");e.parentNode.removeChild(e);})();</script>
-			<!-- Simple Ajax Chat @ https://perishablepress.com/simple-ajax-chat/ -->
 		</div>
 		
 		<?php echo $custom_form_app;
@@ -244,7 +244,7 @@ function simple_ajax_chat() {
 		
 		if ($play_sound == true) : 
 			
-			$res_path = plugins_url('/simple-ajax-chat/resources/audio/'); ?>
+			$res_path = plugins_url('/chat-plugin/resources/audio/'); ?>
 			
 			<audio id="TheBox">
 				<source src="<?php echo $res_path; ?>msg.mp3"></source>

@@ -18,19 +18,19 @@ function sac_default_options() {
 		'sac_fade_length'     => '1500',
 		'sac_text_color'      => '#777777', // not used
 		'sac_name_color'      => '#333333', // not used
-		'sac_use_url'         => true,
+		'sac_use_url'         => false,
 		'sac_use_textarea'    => true,
 		'sac_registered_only' => false,
 		'sac_enable_style'    => true,
 		'sac_default_message' => esc_html__('Welcome to the Chat Forum', 'simple-ajax-chat'),
-		'sac_default_handle'  => esc_html__('Simple Ajax Chat', 'simple-ajax-chat'),
+		'sac_default_handle'  => esc_html__('Hello World', 'simple-ajax-chat'),
 		'sac_custom_styles'   => sac_default_styles(),
 		'sac_content_chat'    => '',
 		'sac_content_form'    => '',
 		'sac_script_url'      => '',
 		'sac_chat_append'     => '',
 		'sac_form_append'     => '',
-		'sac_play_sound'      => true,
+		'sac_play_sound'      => false,
 		'sac_chat_order'      => false,
 		'sac_logged_name'     => 0,
 		'version_alert'       => 0,
@@ -220,16 +220,15 @@ function sac_validate_options_censors($input) {
 
 // default styles
 function sac_default_styles() {
-	
 	return 'div#simple-ajax-chat{width:100%;overflow:hidden;margin:0 0 20px 0;}
 div#sac-content{display:none;}
-div#sac-output{float:left;width:58%;height:350px;overflow:auto;border:1px solid #d1d1d1;}
+div#sac-output{float:left;width:100%;height:250px;overflow:auto;border:1px solid #d1d1d1;clear:both;}
 div#sac-output.sac-reg-req{float:none;width:100%;height:auto;border:0;}
 div#sac-latest-message{padding:5px 10px;font-size:14px;background-color:#d1d1d1;text-shadow:1px 1px 1px rgba(255,255,255,0.5);}
 ul#sac-messages{margin:10px 0;padding:0;font-size:14px;line-height:20px;}
 ul#sac-messages li{margin:0;padding:4px 10px;}
 ul#sac-messages li span{font-weight:bold;}
-div#sac-panel{float:right;width:38%;}
+div#sac-panel{float:left;width:100%;clear:both;}
 form#sac-form fieldset{margin:0 0 5px 0;padding:0;border:0;}
 form#sac-form fieldset label,form#sac-form fieldset input,form#sac-form fieldset textarea{float:left;clear:both;width:94%;margin:0 0 2px 0;font-size:14px;}
 form#sac-form fieldset textarea{height:133px;}
@@ -241,7 +240,6 @@ form#sac-form fieldset textarea{height:133px;}
 
 // whitelist settings
 function sac_init() {
-	
 	register_setting('sac_plugin_options', 'sac_options', 'sac_validate_options');
 	register_setting('sac_plugin_options_censors', 'sac_censors', 'sac_validate_options_censors');
 	
@@ -252,13 +250,10 @@ add_action('admin_init', 'sac_init');
 
 // add options page
 function sac_add_options_page() {
-	
 	global $sac_plugin;
-	
 	add_options_page($sac_plugin, $sac_plugin, 'manage_options', 'simple_ajax_chat', 'sac_render_form');
-	
 }
-add_action('admin_menu', 'sac_add_options_page');
+// add_action('admin_menu', 'sac_add_options_page');
 
 
 
@@ -431,7 +426,6 @@ function sac_render_form() {
 	<style type="text/css">
 		#mm-plugin-options .mm-panel-overview {
 			padding: 0 15px 15px 135px;
-			background: url(<?php echo plugins_url('/simple-ajax-chat/resources/sac-logo.png'); ?>);
 			background-repeat: no-repeat; background-position: 15px 0; background-size: 120px 120px;
 			}
 		#mm-plugin-options .mm-panel-toggle { margin: 5px 0; }
@@ -523,51 +517,7 @@ function sac_render_form() {
 			<div class="meta-box-sortables ui-sortable">
 				
 				<form method="post" action="options.php">
-					<?php settings_fields('sac_plugin_options'); ?>
-					
-					<!-- <div id="mm-panel-alert"<?php echo $display_alert; ?> class="postbox">
-						<h2><?php esc_html_e('Simple Ajax Chat needs your support!', 'simple-ajax-chat'); ?></h2>
-						<div class="toggle">
-							<div class="mm-panel-alert">
-								<p>
-									<?php esc_html_e('Please', 'simple-ajax-chat'); ?> <a target="_blank" rel="noopener noreferrer" href="https://monzillamedia.com/donate.html" title="<?php esc_attr_e('Make a donation via PayPal!', 'simple-ajax-chat'); ?>"><?php esc_html_e('make a donation', 'simple-ajax-chat'); ?></a> <?php esc_html_e('and/or', 'simple-ajax-chat'); ?> 
-									<a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/support/plugin/simple-ajax-chat/reviews/?rate=5#new-post" title="<?php esc_attr_e('Thank you for your support!', 'simple-ajax-chat'); ?>"><?php esc_html_e('give it a 5-star rating', 'simple-ajax-chat'); ?>&nbsp;&raquo;</a>
-								</p>
-								<p>
-									<?php esc_html_e('Your generous support enables continued development of this free plugin. Thank you!', 'simple-ajax-chat'); ?>
-								</p>
-								<div class="dismiss-alert">
-									<div class="dismiss-alert-wrap">
-										<input type="hidden" name="sac_options[sac_version]" value="<?php echo $version_previous; ?>" />  
-										<input class="input-alert" name="sac_options[version_alert]" type="checkbox" value="1" <?php if (isset($sac_options['version_alert'])) checked('1', $sac_options['version_alert']); ?> />  
-										<label class="description" for="sac_options[version_alert]"><?php esc_html_e('Check this box if you have shown support', 'simple-ajax-chat') ?></label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					
-					<!-- <div id="mm-panel-overview" class="postbox">
-						<h2><?php esc_html_e('Overview', 'simple-ajax-chat'); ?></h2>
-						<div class="toggle<?php if ($sac_action_any) echo ' default-hidden'; ?>">
-							<div class="mm-panel-overview">
-								<p>
-									<strong><?php echo $sac_plugin; ?></strong> <?php esc_html_e('(SAC) displays an Ajax-powered chat box anywhere on your site.', 'simple-ajax-chat'); ?>
-									<?php esc_html_e('Use the shortcode to display the chat box on any post or page, or use the template tag to display anywhere in your theme.', 'simple-ajax-chat'); ?>
-								</p>
-								<ul>
-									<li><a id="mm-panel-primary-link" href="#mm-panel-primary"><?php esc_html_e('Plugin Settings', 'simple-ajax-chat'); ?></a></li>
-									<li><a id="mm-panel-secondary-link" href="#mm-panel-secondary"><?php esc_html_e('Shortcode &amp; Template Tag', 'simple-ajax-chat'); ?></a></li>
-									<li><a id="mm-panel-tertiary-link" href="#mm-panel-tertiary"><?php esc_html_e('Manage Chat Messages', 'simple-ajax-chat'); ?></a></li>
-									<li><a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/plugins/simple-ajax-chat/"><?php esc_html_e('Plugin Homepage', 'simple-ajax-chat'); ?></a></li>
-								</ul>
-								<p>
-									<?php esc_html_e('If you like this plugin, please', 'simple-ajax-chat'); ?> 
-									<a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/support/plugin/simple-ajax-chat/reviews/?rate=5#new-post" title="<?php esc_attr_e('Thank you for your support!', 'simple-ajax-chat'); ?>"><?php esc_html_e('give it a 5-star rating', 'simple-ajax-chat'); ?>&nbsp;&raquo;</a>
-								</p>
-							</div>
-						</div>
-					</div> -->
+					<?php settings_fields('sac_plugin_options'); ?>					
 
 					<div id="mm-panel-primary" class="postbox">
 						<h2><?php esc_html_e('Plugin Settings', 'simple-ajax-chat'); ?></h2>

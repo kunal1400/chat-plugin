@@ -19,10 +19,6 @@
 	$logged_username = apply_filters('sac_logged_username', $logged_username, $current_user);
 	
 ?>
-/*
-	Simple Ajax Chat > JavaScript
-	@ https://wordpress.org/plugins/simple-ajax-chat/
-*/
 
 // Fade Anything Technique by Adam Michela
 var Fat = { 
@@ -177,9 +173,10 @@ var smilies = [
 	[':mrgreen:', 'icon_mrgreen.gif']
 ];
 
-// apply filters
-function sac_apply_filters(s) { 
-	return filter_smilies(make_links((s))); 
+// apply filters(disabling emojis for now)
+function sac_apply_filters(s) {
+	return s;
+	<!-- return filter_smilies(make_links((s)));  -->
 };
 
 // filter smilies
@@ -246,8 +243,8 @@ var httpSendChat;
 
 var get_timeout = get_timeout();
 var sac_timeout = get_timeout;
-var GetChaturl  = '<?php echo plugins_url('simple-ajax-chat/simple-ajax-chat-core.php?sacGetChat=yes'); ?>';
-var SendChaturl = '<?php echo plugins_url('simple-ajax-chat/simple-ajax-chat-core.php?sacSendChat=yes'); ?>';
+var GetChaturl  = '<?php echo plugins_url('chat-plugin/simple-ajax-chat-core.php?sacGetChat=yes'); ?>';
+var SendChaturl = '<?php echo plugins_url('chat-plugin/simple-ajax-chat-core.php?sacSendChat=yes'); ?>';
 
 function initJavaScript() {
 	
@@ -476,7 +473,7 @@ function insertNewContent(liName,liText,lastResponse, liUrl, liId) {
 	
 	insertO.insertBefore(oLi, insertO.<?php echo $child; ?>Child);
 	
-	<?php $request_url = plugins_url() .'/simple-ajax-chat/includes/sac-check-user.php'; ?>
+	<?php $request_url = plugins_url() .'/chat-plugin/includes/sac-check-user.php'; ?>
 	jQuery.post('<?php echo $request_url; ?>', 'sac_user=' + encodeURIComponent(liName), function(response){
 		jQuery('.sac-user-' + name_class).addClass('sac-online');
 	});
